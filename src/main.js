@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import router from './router'
+import VueResource from 'vue-resource'
 import App from './App'
 import { Header } from 'mint-ui'
 import { Tabbar, TabItem, Swipe, SwipeItem } from 'mint-ui'
@@ -11,6 +12,7 @@ import './lib/mui/css/mui.min.css'
 // 导入扩展图标样式
 import './lib/mui/css/icons-extra.css'
 
+Vue.use(VueResource)
 Vue.config.productionTip = false
 Vue.component(Header.name, Header)
 Vue.component(Tabbar.name, Tabbar)

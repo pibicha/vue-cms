@@ -1,28 +1,54 @@
 <template>
   <div>
     <mt-swipe :auto="4000">
-      <mt-swipe-item>1</mt-swipe-item>
-      <mt-swipe-item>2</mt-swipe-item>
-      <mt-swipe-item>3</mt-swipe-item>
+      <mt-swipe-item v-for="item in res" :key="item.id">
+        <img :src="item.img" />
+      </mt-swipe-item>
     </mt-swipe>
     <h1>home</h1>
   </div>
 </template>
 <script>
-export default {}
+import { Toast } from 'mint-ui'
+export default {
+  data() {
+    return { res: [{ image: '', url: '', id: '' }] }
+  },
+  created() {
+    this.getSwipe()
+  },
+  methods: {
+    getSwipe() {
+      var body = this.$http
+        .get('http://www.liulongbin.top:3005/api/getlunbo')
+        .then(result => {
+          if (result.body.status == 0) {
+            this.res = result.body.message
+          } else {
+            Toast('加载轮播图失败')
+          }
+        })
+    }
+  }
+}
 </script>
 <style lang="scss">
 .mint-swipe {
   height: 300px;
   .mint-swipe-item {
     &:nth-child(1) {
-        background-color: red;
+      background-color: red;
     }
     &:nth-child(2) {
-        background-color: green;
+      background-color: green;
     }
     &:nth-child(3) {
-        background-color: orange;
+      background-color: orange;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
 }
