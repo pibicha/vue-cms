@@ -7,9 +7,12 @@
     </p>
     <hr>
     <div class="content" v-html="newsinfo.content"></div>
+    <hr>
+    <comment-box :artid='this.id'></comment-box>
   </div>
 </template>
 <script>
+import Comment from '../subcomponents/Comment.vue'
 export default {
   data() {
     return {
@@ -17,9 +20,11 @@ export default {
       newsinfo:{}
     };
   },
-
   created() {
       this.getNewsInfo()
+  },
+  components:{
+      'comment-box':Comment
   },
   methods: {
     getNewsInfo() {

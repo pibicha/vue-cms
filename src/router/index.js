@@ -6,7 +6,7 @@ import Search from '../components/tabbar/Search.vue'
 import Cart from '../components/tabbar/Cart.vue'
 import NewsList from '../components/news/NewsList.vue'
 import NewsInfo from '../components/news/NewsInfo.vue'
-
+import PhotoList from "../components/photos/PhotoList.vue"
 
 import { homedir } from 'os'
 
@@ -46,6 +46,10 @@ export default new Router({
     {
       path:'/home/newsinfo/:id',
       component: NewsInfo
+    },
+    {
+      path:'/home/photos',
+      component: PhotoList
     }
   ],
   // 使用mui提供的现成样式 代替路由激活样式
