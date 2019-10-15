@@ -34,7 +34,7 @@ export default {
 </script>
 <style lang="scss">
 .mint-swipe {
-  height: 300px;
+  height: 200px;
   .mint-swipe-item {
     &:nth-child(1) {
       background-color: red;
