@@ -12,7 +12,7 @@ import 'mint-ui/lib/style.css'
 import './lib/mui/css/mui.min.css'
 // 导入扩展图标样式
 import './lib/mui/css/icons-extra.css'
-
+// import mui from './lib/mui/js/mui.min.js'
 Vue.use(VueResource)
 Vue.http.options.root = 'http://www.liulongbin.top:3005'
 Vue.http.options.enmulateJSON=true

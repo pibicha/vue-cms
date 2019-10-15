@@ -14,5 +14,10 @@
       "presets": ["env", "stage-2"],
       "plugins": ["transform-vue-jsx", "transform-es2015-modules-commonjs", "dynamic-import-node"]
     }
-  }
+  },
+  // 在组件中导入相对路径时，如果通过安装babel-plugin-transform-remove-strict-mode解决不了 使用ignore可以忽略严格模式报的错
+  "ignore": [
+    "./src/lib/mui/js/*.js"  // 建了lib文件夹，存放mui相关文件
+    ]
+  
 }
