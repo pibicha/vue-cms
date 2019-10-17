@@ -9,7 +9,10 @@ import NewsInfo from '../components/news/NewsInfo.vue'
 import PhotoList from "../components/photos/PhotoList.vue"
 import PhotoInfo from "../components/photos/PhotoInfo.vue"
 import Goodslist from "../components/goods/Goodslist.vue"
-import GoodInfo from  "../components/goods/GoodInfo.vue"
+import GoodInfo from "../components/goods/GoodInfo.vue"
+import GoodsDesc from "../components/goods/GoodsDesc.vue"
+import GoodsComment from "../components/goods/GoodsComment.vue"
+
 import { homedir } from 'os'
 
 Vue.use(Router)
@@ -46,25 +49,35 @@ export default new Router({
       component: NewsList
     },
     {
-      path:'/home/newsinfo/:id',
+      path: '/home/newsinfo/:id',
       component: NewsInfo
     },
     {
-      path:'/home/photos',
+      path: '/home/photos',
       component: PhotoList
     },
     {
-      path:'/home/photoinfo/:id',
+      path: '/home/photoinfo/:id',
       component: PhotoInfo
     },
     {
-      path:'/home/goodslist',
+      path: '/home/goodslist',
       component: Goodslist
     },
     {
-      path:'/home/goodsinfo:id',
-      component:GoodInfo,
-      name:'goodsinfo'
+      path: '/home/goodsinfo/:id',
+      component: GoodInfo,
+      name: 'goodsinfo'
+    },
+    {
+      path: '/home/goodsdesc/:id',
+      component: GoodsDesc,
+      name:'goodsDesc'
+    },
+    {
+      path: '/home/goodscomment/:id',
+      component: GoodsComment,
+      name:'goodscomment'
     }
   ],
   // 使用mui提供的现成样式 代替路由激活样式

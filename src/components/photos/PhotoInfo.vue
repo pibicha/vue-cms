@@ -15,47 +15,47 @@
     <div class="content" v-html="photoInfo.content"></div>
 
     <!-- 评论组件 -->
-    <comment-box :id="id"></comment-box>
+    <comment-box :artid="id"></comment-box>
   </div>
 </template>
 <script>
-import comment from '../subcomponents/Comment.vue'
+import comment from "../subcomponents/Comment.vue";
 export default {
   data() {
-    return { id: this.$route.params.id, photoInfo: {}, shortCut: [] }
+    return { id: this.$route.params.id, photoInfo: {}, shortCut: [] };
   },
   created() {
-    this.getPhotoInfo()
-    this.getShortCut()
+    this.getPhotoInfo();
+    this.getShortCut();
   },
   methods: {
     getPhotoInfo() {
-      this.$http.get('api/getimageInfo/' + this.id).then(result => {
+      this.$http.get("api/getimageInfo/" + this.id).then(result => {
         if (result.body.status === 0) {
-          this.photoInfo = result.body.message[0]
+          this.photoInfo = result.body.message[0];
         }
-      })
+      });
     },
     getShortCut() {
-      this.$http.get('api/getthumimages/' + this.id).then(result => {
+      this.$http.get("api/getthumimages/" + this.id).then(result => {
         if (result.body.status === 0) {
-          let thums = []
-          let rs = result.body.message
+          let thums = [];
+          let rs = result.body.message;
           rs.forEach(element => {
             // thums.push({ src: element.src, w: 600, h: 400 });
-            element.w = 600
-            element.h = 400
-            element.msrc = element.src
-          })
-          this.shortCut = rs
+            element.w = 600;
+            element.h = 400;
+            element.msrc = element.src;
+          });
+          this.shortCut = rs;
         }
-      })
+      });
     }
   },
   components: {
-    'comment-box': comment
+    "comment-box": comment
   }
-}
+};
 </script>
 <style lang="scss">
 .photoinfo-container {
@@ -83,13 +83,13 @@ export default {
       margin: 0;
       a {
         img {
-          width: 114px;
-          height: 90px;
           margin: 0;
           padding: 0;
         }
       }
     }
   }
+
+  
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <lunbo :res='res'></lunbo>
+    <lunbo :res='res' :isfull='true'></lunbo>
     <!-- 九宫格 到 6宫格 的改造工程 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
