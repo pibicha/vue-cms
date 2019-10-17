@@ -1,10 +1,6 @@
 <template>
   <div>
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="item in res" :key="item.id">
-        <img :src="item.img" />
-      </mt-swipe-item>
-    </mt-swipe>
+    <lunbo :res='res'></lunbo>
     <!-- 九宫格 到 6宫格 的改造工程 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -48,12 +44,16 @@
 </template>
 <script>
 import { Toast } from "mint-ui";
+import Lunbotu from '../../components/subcomponents/Lunbotu.vue'
 export default {
   data() {
     return { res: [{ image: "", url: "", id: "" }] };
   },
   created() {
     this.getSwipe();
+  },
+  components:{
+    'lunbo':Lunbotu
   },
   methods: {
     getSwipe() {
@@ -71,14 +71,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.mint-swipe {
-  height: 200px;
 
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
 
 .mui-grid-view.mui-grid-9 {
   background-color: #fff;
