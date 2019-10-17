@@ -1,55 +1,68 @@
 <template>
-  <div class="goods-list">
-    <div class="good-item">
-      <img src="../../images/menu1.png" alt />
-      <h1 class="title">美人</h1>
-      <div class="info">
-        <p class="price">
-          <span class="now">¥99</span>
-          <span class="old">¥199</span>
-        </p>
-        <p class="sell">
-          <span>热卖中</span>
-          <span>剩90件</span>
-        </p>
+  <div>
+    <div class="goods-list">
+      <!-- <router-link class="good-item" v-for="item in goodlist" :key="item.id" :to="'/home/goodsinfo/' + item.id" tag='div'>
+        <img :src="item.img_url" alt />
+        <h1 class="title">{{item.title}}</h1>
+        <div class="info">
+          <p class="price">
+            <span class="now">¥{{item.sell_price}}</span>
+            <span class="old">¥{{item.market_price}}</span>
+          </p>
+          <p class="sell">
+            <span>热卖中</span>
+            <span>剩{{item.stock_quantity}}件</span>
+          </p>
+        </div>
+      </router-link>-->
+
+      <!-- 不使用router跳转，只用window.location--编程式跳转 -->
+      <div class="good-item" v-for="item in goodlist" :key="item.id" @click="goDetail(item.id)">
+        <img :src="item.img_url" alt />
+        <h1 class="title">{{item.title}}</h1>
+        <div class="info">
+          <p class="price">
+            <span class="now">¥{{item.sell_price}}</span>
+            <span class="old">¥{{item.market_price}}</span>
+          </p>
+          <p class="sell">
+            <span>热卖中</span>
+            <span>剩{{item.stock_quantity}}件</span>
+          </p>
+        </div>
       </div>
     </div>
-    <!--  -->
-    <div class="good-item">
-      <img src="../../images/menu1.png" alt />
-      <h1
-        class="title"
-      >美ssssssssssssssssssssssssssssssssss人美ssssssssssssssssssssssssssssssssss人美ssssssssssssssssssssssssssssssssss人</h1>
-      <div class="info">
-        <p class="price">
-          <span class="now">¥99</span>
-          <span class="old">¥199</span>
-        </p>
-        <p class="sell">
-          <span>热卖中</span>
-          <span>剩90件</span>
-        </p>
-      </div>
-    </div>
-    <!--  -->
-    <div class="good-item">
-      <img src="../../images/menu1.png" alt />
-      <h1 class="title">美人</h1>
-      <div class="info">
-        <p class="price">
-          <span class="now">¥99</span>
-          <span class="old">¥199</span>
-        </p>
-        <p class="sell">
-          <span>热卖中</span>
-          <span>剩90件</span>
-        </p>
-      </div>
-    </div>
+    <mt-button type="danger" size="large" @click="loadMore">加载更多</mt-button>
   </div>
 </template>
 <script>
-export default {}
+export default {
+  data() {
+    return { goodlist: [], pageindex: 1 };
+  },
+  created() {
+    this.acquireGoodlists();
+  },
+  methods: {
+    acquireGoodlists() {
+      this.$http
+        .get("api/getgoods?pageindex=" + this.pageindex)
+        .then(result => {
+          if (result.body.status === 0) {
+            this.goodlist = this.goodlist.concat(result.body.message);
+          }
+        });
+    },
+    loadMore() {
+      this.pageindex = this.pageindex + 1;
+      this.acquireGoodlists();
+    },
+    goDetail(id) {
+      // router为导航对象，route为参数对象
+      this.$router.push({ name: "goodsinfo", params: { id } });
+    }
+  }
+};
 </script>
 <style lang="scss">
 .goods-list {

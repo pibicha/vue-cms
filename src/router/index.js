@@ -9,6 +9,7 @@ import NewsInfo from '../components/news/NewsInfo.vue'
 import PhotoList from "../components/photos/PhotoList.vue"
 import PhotoInfo from "../components/photos/PhotoInfo.vue"
 import Goodslist from "../components/goods/Goodslist.vue"
+import GoodInfo from  "../components/goods/GoodInfo.vue"
 import { homedir } from 'os'
 
 Vue.use(Router)
@@ -53,12 +54,17 @@ export default new Router({
       component: PhotoList
     },
     {
+      path:'/home/photoinfo/:id',
+      component: PhotoInfo
+    },
+    {
       path:'/home/goodslist',
       component: Goodslist
     },
     {
-      path:'/home/photoinfo/:id',
-      component: PhotoInfo
+      path:'/home/goodsinfo:id',
+      component:GoodInfo,
+      name:'goodsinfo'
     }
   ],
   // 使用mui提供的现成样式 代替路由激活样式
