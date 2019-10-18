@@ -1,5 +1,5 @@
 <template>
-  <div class="mui-numbox" data-numbox-step="1" data-numbox-min="0" data-numbox-max="100">
+  <div class="mui-numbox" data-numbox-step="1" data-numbox-min="0">
     <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
     <!-- 这里为什么不能用v-model -->
     <!-- <input class="mui-numbox-input" type="number" v-model='num' @change="changeNum()"/> -->
@@ -17,11 +17,16 @@ export default {
   data() {
     return { num: this.selectedCount };
   },
-  props: ["selectedCount"],
+  props: ["selectedCount","max"],
   methods: {
     changeNum() {
       let num = this.$refs.numbox.value
       this.$emit("func", num);
+    }
+  },
+  watch:{
+    max(newVal, oldVal){
+      mui('.mui-numbox').numbox().setOption("max", newVal)
     }
   }
 };

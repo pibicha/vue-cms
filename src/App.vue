@@ -33,7 +33,8 @@ export default {
   name: "App"
 };
 </script>
-<style>
+// 这里之前没加scoped 导致商品购买页添加购物车小球不显示动画，应该是样式污染了
+<style lang='scss' scoped>
 .mt-header{
   z-index: 99;
 }
@@ -46,14 +47,17 @@ export default {
 .v-enter{
   opacity: 0;
   transform: translateX(100%);
-  transition: all 0.5s ease
 }
 
 .v-leave-to {
   opacity: 0;
   transform: translateX(-100%);
   position: absolute;
-  transition: all 0.5s ease
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
 }
 
 
