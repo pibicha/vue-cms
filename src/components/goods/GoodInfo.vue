@@ -12,7 +12,7 @@
     <div class="mui-card">
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
-          <swiper :lunbotuList="lunbotu" :isfull="false"></swiper>
+          <swiper :res="lunbotu" :isfull="false"></swiper>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
           <p class="price">
             市场价：<del>￥{{ goodsinfo.market_price }}</del>&nbsp;&nbsp;销售价：<span class="now_price">￥{{ goodsinfo.sell_price }}</span>
           </p>
-          <p>购买数量：<numbox @getcount="getSelectedCount" :max="goodsinfo.stock_quantity"></numbox></p>
+          <p>购买数量：<numbox @func='addNum' :selectedCount='selectedCount'></numbox></p>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
             <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
@@ -102,7 +102,7 @@ export default {
     },
     goDesc(id) {
       // 点击使用编程式导航跳转到 图文介绍页面
-      this.$router.push({ name: "goodsdesc", params: { id } });
+      this.$router.push({ name: "goodsDesc", params: { id } });
     },
     goComment(id) {
       // 点击跳转到 评论页面
@@ -142,10 +142,10 @@ export default {
     afterEnter(el) {
       this.ballFlag = !this.ballFlag;
     },
-    getSelectedCount(count) {
-      // 当子组件把 选中的数量传递给父组件的时候，把选中的值保存到 data 上
-      this.selectedCount = count;
-      console.log("父组件拿到的数量值为： " + this.selectedCount);
+    addNum(num){
+      this.selectedCount = num
+      console.log(this.selectedCount);
+      
     }
   },
   components: {
