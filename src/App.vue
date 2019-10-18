@@ -33,7 +33,8 @@ export default {
   name: "App"
 };
 </script>
-// 这里之前没加scoped 导致商品购买页添加购物车小球不显示动画，应该是样式污染了
+// 1 这里之前没加scoped 导致商品购买页添加购物车小球不显示动画，应该是样式污染了
+// 2 本来在这里加入了scoped以后 组件切换会失去动画效果，加上vuex之后居然又有动画了。。。
 <style lang='scss' scoped>
 .mt-header{
   z-index: 99;

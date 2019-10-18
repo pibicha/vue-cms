@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import Vuex from 'vuex'
 import router from './router'
 import VueResource from 'vue-resource'
 import VuePreview from 'vue-preview';
@@ -27,7 +28,7 @@ import './lib/mui/css/icons-extra.css'
 // import mui from './lib/mui/js/mui.min.js'
 Vue.use(VueResource)
 Vue.use(VuePreview);
-
+Vue.use(Vuex);
 Vue.http.options.root = 'http://www.liulongbin.top:3005'
 Vue.http.options.enmulateJSON=true
 Vue.config.productionTip = false
